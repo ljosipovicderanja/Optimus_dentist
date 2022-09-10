@@ -1,8 +1,9 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <DentistCard />
+    <br />
     <button @click="testBaza()">test button</button>
+
     <div id="items" v-for="item in items" v-bind:key="item._id">
       <p>{{ item._id }}</p>
     </div>
@@ -10,13 +11,13 @@
 </template>
 
 <script>
-import HelloWorld from "@/components/HelloWorld.vue";
+import DentistCard from "@/components/DentistCard.vue";
 import { db } from "@/services/index.js";
 
 export default {
   name: "HomeView",
   components: {
-    HelloWorld,
+    DentistCard,
   },
 
   data() {
