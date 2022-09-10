@@ -4,13 +4,13 @@ const express = require("express");
 const mongodb = require("mongodb");
 const router = express.Router();
 
-//get posts (Read)
+//get
 router.get("/test", async (req, res) => {
   let collection = await loadCollection("newCollection");
   res.send(await collection.find({}).toArray());
 });
 
-//add post
+//add
 router.post("/test", async (req, res) => {
   let db = await connect();
   let data = {
@@ -24,7 +24,20 @@ router.post("/test", async (req, res) => {
   res.status(201).send();
 });
 
-//delete post
+router.post("/testone", async (req, res) => {
+  let db = await connect();
+  let data = {
+    name: req.body.text,
+    surname: "surname",
+    date: Date.now(),
+  };
+
+  await db.collection("newCollection").insertOne(data);
+
+  res.status(201).send();
+});
+
+//delete
 router.delete("/:id", async (req, res) => {
   let db = await loadCollection("newCollection");
   await db.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });

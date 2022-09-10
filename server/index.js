@@ -1,21 +1,27 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
-
 
 //middleware
 app.use(bodyParser.json());
 app.use(cors());
 
-
 //first route
-const post = require('./routes/api/post.js');
-app.use('/api/post',post)
+const post = require("./routes/api/post.js");
+app.use("/api/post", post);
 
+//handle production mode
+if (process.env.NODE_ENV === "production") {
+  //static folder
+  app.use(express.static(__dirname + "/public/"));
+
+  //handle single page app
+  app.get(/.*/, (req, res) => res.sendFile(__dirname + "/public/index.html"));
+}
 
 //server or localhost
 const port = process.env.PORT || 3000;
 const baseURL = process.env.BASE_URL;
-app.listen(port,()=>console.log(`server started on ${baseURL} port ${port}`));
+app.listen(port, () => console.log(`server started on ${baseURL} port ${port}`));
