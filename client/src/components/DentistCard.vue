@@ -12,21 +12,28 @@
         <li class="list-group-item">Dapibus ac facilisis in</li>
         <li class="list-group-item">Vestibulum at eros</li>
       </ul>
-      <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
+      <div class="card-body" v-if="viewDetail">
+        <button class="btn btn-primary btn-lg" @click.prevent="viewDetails()">View details</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: "DentistCard",
-  props: { name: String, description: String },
+  props: { name: String, description: String, viewDetail: Boolean },
   data() {
     return {};
   },
   setup() {},
+  methods: {
+    viewDetails() {
+      router.push("/dentistDetails");
+    },
+  },
 };
 </script>
 <style scoped>
@@ -38,5 +45,9 @@ export default {
   position: relative;
   display: inline-block;
   margin: 20px;
+}
+
+.list-group-item {
+  background-color: transparent;
 }
 </style>

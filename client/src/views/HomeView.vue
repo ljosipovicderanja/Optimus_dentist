@@ -26,6 +26,7 @@
 <script>
 import { db } from "@/services/index.js";
 import router from "@/router";
+import InternalStorage from "@/InternalStorage";
 
 export default {
   name: "HomeView",
@@ -34,6 +35,7 @@ export default {
   data() {
     return {
       items: [],
+      InternalStorage,
     };
   },
 
@@ -43,7 +45,11 @@ export default {
 
   methods: {
     navigateFindDentist() {
-      router.push("/findDentist");
+      if (InternalStorage.userAuth) {
+        router.push("/findDentist");
+      } else {
+        router.push("/login");
+      }
     },
     async testBaza() {
       //should use await

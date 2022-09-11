@@ -15,6 +15,9 @@
           </div>
         </form>
         <button class="btn btn-primary btn-lg" @click.prevent="login()">Login</button>
+        <br />
+        <p>or register if you dont have account already</p>
+        <button class="btn btn-primary btn-lg" @click.prevent="register()">Register</button>
       </div>
       <div class="col"></div>
     </div>
@@ -35,6 +38,15 @@ export default {
       this.InternalStorage.userAuth = true;
       router.push("/");
     },
+    register() {
+      router.push("/register");
+    },
   },
 };
 </script>
+
+<style>
+.btn {
+  margin: 20px;
+}
+</style>

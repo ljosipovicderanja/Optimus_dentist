@@ -25,7 +25,7 @@ export default {
   //background-image: url("images/background2.JPG");
   background-image: linear-gradient(#2c3e50, #7490ab);
   background-repeat: no-repeat;
-  background-size: auto 100%;
+  background-size: auto;
   background-position: center;
   margin: 0 0 0 0;
   padding: 0;
@@ -33,9 +33,7 @@ export default {
   scroll-margin: 0;
   scroll-padding: 0;
   height: 100vh;
-  max-width: 100%;
-  max-height: 100%;
-  size: 100%;
+  max-height: 100vh;
 }
 
 #app {
@@ -45,7 +43,10 @@ export default {
   text-align: center;
   color: #b3c3d3;
   margin: 0 0 0 0;
+  background-size: auto;
   padding: 0;
   border: 0;
+  height: 100vh;
+  max-height: 100vh;
 }
 </style>

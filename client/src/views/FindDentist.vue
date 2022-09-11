@@ -5,7 +5,7 @@
     <h2 style="margin-top: 30px">Top rated dentists</h2>
 
     <div id="items" v-for="item in items" v-bind:key="item._id">
-      <DentistCard />
+      <DentistCard viewDetail="true" />
     </div>
 
     <hr class="solid" />

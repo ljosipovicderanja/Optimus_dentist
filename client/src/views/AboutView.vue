@@ -22,13 +22,13 @@ export default {
   },
 
   async created() {
-    this.items = await db.getAllItemsFromCollectionMDb("test");
+    this.items = await db.getAllItemsFromCollectionMDb("dentist");
   },
 
   methods: {
     async testBaza() {
       //should use await
-      return await db.getAllItemsFromCollectionMDb("test");
+      return await db.getAllItemsFromCollectionMDb("dentist");
     },
   },
 };
