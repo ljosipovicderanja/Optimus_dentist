@@ -6,6 +6,7 @@
         <div class="col-8">
           <div class="jumbotron" style="background-color: transparent">
             <h1 class="display-4">Welcome to DentistFinder</h1>
+            <img src="@/assets/dentist_logo.png" class="rounded-circle centered" style="max-width: 150px; margin: 20px 0px 20px 0px; box-shadow: 0px 0px 68px -7px rgba(0, 0, 0, 0.61)" alt="Avatar" />
             <p class="lead">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur blanditiis nihil iure error rem? Voluptatem dolor nemo quasi sunt, voluptates exercitationem? Cumque nobis sed voluptas dolor et excepturi aliquam consequatur!
             </p>
@@ -18,10 +19,6 @@
         </div>
         <div class="col"></div>
       </div>
-    </div>
-
-    <div id="items" v-for="item in items" v-bind:key="item._id">
-      <p>{{ item._id }}</p>
     </div>
   </div>
 </template>

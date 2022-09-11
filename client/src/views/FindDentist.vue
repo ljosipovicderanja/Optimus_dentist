@@ -1,14 +1,21 @@
 <template>
   <div class="about">
-    <h1>This is an Find Dentist page</h1>
+    <h1 style="margin-top: 30px">Find Dentist</h1>
 
-    <DentistCard />
-    <br />
-    <button @click="testBaza()">test button</button>
+    <h2 style="margin-top: 30px">Top rated dentists</h2>
 
     <div id="items" v-for="item in items" v-bind:key="item._id">
-      <p>{{ item._id }}</p>
+      <DentistCard />
     </div>
+
+    <hr class="solid" />
+
+    <div id="items" v-for="item in items" v-bind:key="item._id">
+      <DentistCard />
+    </div>
+
+    <br />
+    <button @click="testBaza()">test button</button>
   </div>
 </template>
 
@@ -27,14 +34,24 @@ export default {
   },
 
   async created() {
-    this.items = await db.getAllItemsFromCollectionMDb("test");
+    this.items = await db.getAllItemsFromCollectionMDb("dentist");
   },
 
   methods: {
     async testBaza() {
       //should use await
-      return await db.getAllItemsFromCollectionMDb("test");
+      return await db.getAllItemsFromCollectionMDb("dentist");
     },
   },
 };
 </script>
+
+<style>
+#items {
+  display: inline-block;
+}
+
+hr.solid {
+  border-top: 3px solid #7490ab;
+}
+</style>

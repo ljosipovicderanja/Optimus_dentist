@@ -1,7 +1,10 @@
 <template>
   <div id="mainNavbar">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand">DentistFinder</a>
+      <a class="navbar-brand">
+        <img src="@/assets/dentist_logo_transparent.png" class="rounded-circle centered" style="max-width: 40px; max-height: 40px" alt="Avatar" />
+        DentistFinder
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -54,5 +57,6 @@ export default {
 <style lang="scss" scoped>
 #mainNavbar {
   background-color: #7490ab;
+  box-shadow: 2px 10px 25px 1px rgba(0, 0, 0, 0.44);
 }
 </style>
