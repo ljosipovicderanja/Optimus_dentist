@@ -10,7 +10,6 @@ let db = {
     console.log("CALLED FUNCTION: getAllItemsFromCollectionMDb");
     let response = await Service.get(`/${apiName}/`);
     let data = response.data;
-    console.log(data);
     return data;
   },
   async addItemInCollectionMDb(apiName, data) {

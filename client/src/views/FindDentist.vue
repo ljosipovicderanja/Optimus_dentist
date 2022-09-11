@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an FindDentist page</h1>
+    <h1>This is an Find Dentist page</h1>
     <button @click="testBaza()">test button</button>
     <div id="items" v-for="item in items" v-bind:key="item._id">
       <p>{{ item._id }}</p>
