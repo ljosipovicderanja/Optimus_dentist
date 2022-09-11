@@ -30,6 +30,7 @@
             <router-link class="nav-link" to="/" @click="logout()">Logout</router-link>
           </li>
         </ul>
+        <span class="navbar-text" v-if="InternalStorage.userAuth"> Current user: {{ InternalStorage.currentUser }} </span>
       </div>
     </nav>
   </div>

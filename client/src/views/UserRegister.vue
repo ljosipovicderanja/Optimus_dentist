@@ -6,16 +6,16 @@
       <div class="col-8">
         <form>
           <div class="form-group">
-            <label for="formGroupExampleInput">Example label</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input" />
+            <label for="formGroupExampleInput">Username</label>
+            <input type="text" class="form-control" v-model="username" id="formGroupExampleInput" placeholder="Username" />
           </div>
           <div class="form-group">
-            <label for="formGroupExampleInput2">Another label</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input" />
+            <label for="formGroupExampleInput2">Password</label>
+            <input type="password" class="form-control" v-model="password" id="formGroupExampleInput2" placeholder="Password" />
           </div>
           <div class="form-group">
-            <label for="formGroupExampleInput2">Another label</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input" />
+            <label for="formGroupExampleInput2">Repeat password</label>
+            <input type="password" class="form-control" v-model="repeatedPassword" id="formGroupExampleInput2" placeholder="Repeated password" />
           </div>
         </form>
         <button class="btn btn-primary btn-lg" @click.prevent="register()">Register</button>
@@ -27,15 +27,27 @@
 
 <script>
 import router from "@/router";
+import { db } from "@/services/index.js";
 export default {
   name: "UserRegister",
   setup() {},
   data() {
-    return {};
+    let username, password, repeatedPassword;
+    return { username, password, repeatedPassword };
   },
   methods: {
-    register() {
-      router.push("/login");
+    async register() {
+      if (this.password != this.repeatedPassword) {
+        alert("Password not match!");
+        return;
+      } else {
+        let userData = {
+          username: this.username,
+          password: this.password,
+        };
+        await db.registerUser("users", userData);
+        router.push("/login");
+      }
     },
   },
 };

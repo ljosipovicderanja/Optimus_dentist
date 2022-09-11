@@ -27,6 +27,32 @@ let db = {
     console.log("CALLED FUNCTION: deleteItemFromCollectionByIdMDb");
     return Service.delete(`${apiName}/${id}`);
   },
+
+  async registerUser(apiName, data) {
+    console.log("CALLED FUNCTION: registerUser");
+    let serverData = {
+      username: data.username,
+      password: data.password,
+    };
+    console.log(serverData);
+    await Service.post(`/${apiName}/`, serverData);
+  },
+
+  async loginUser(apiName, data) {
+    console.log("CALLED FUNCTION: loginUser");
+    let serverData = {
+      username: data.username,
+      password: data.password,
+    };
+    console.log(serverData);
+    let result = await Service.post(`/${apiName}/`, serverData);
+    if (result.status != 200 || !result.data) {
+      alert("Loign failed!");
+      return;
+    }
+    console.log(result);
+    return result;
+  },
 };
 
 let auth = {};

@@ -14,6 +14,8 @@ router.post("/users", async (req, res) => {
     username: user.username,
     password: user.password,
   };
+  console.log("received data: ");
+  console.log(userData);
 
   try {
     result = await db.collection("users").insertOne(userData);
@@ -33,8 +35,9 @@ router.post("/auth", async (req, res) => {
   try {
     let dbuser = await db.collection("users").findOne({ username: user.username });
     if (dbuser && dbuser.password == user.password) {
-      res.status(201).json(dbuser.username);
+      res.status(200).json(dbuser.username);
     } else {
+      res.status(401).send();
       throw new Error("Authentication failed - wrong username or password");
     }
   } catch (e) {
