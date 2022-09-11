@@ -12,7 +12,7 @@
             <hr class="my-4" />
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quisquam dolorum nostrum. Voluptate commodi magnam non blanditiis quod quisquam laboriosam, sequi eum unde perspiciatis fugiat quaerat neque consequuntur et sit!</p>
             <p class="lead">
-              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Find dentist!</button>
+              <button class="btn btn-primary btn-lg" @click.prevent="navigateFindDentist()">Find dentist!</button>
             </p>
           </div>
         </div>
@@ -28,6 +28,7 @@
 
 <script>
 import { db } from "@/services/index.js";
+import router from "@/router";
 
 export default {
   name: "HomeView",
@@ -44,6 +45,9 @@ export default {
   },
 
   methods: {
+    navigateFindDentist() {
+      router.push("/findDentist");
+    },
     async testBaza() {
       //should use await
       return await db.getAllItemsFromCollectionMDb("dentist");

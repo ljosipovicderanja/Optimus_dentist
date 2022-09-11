@@ -33,7 +33,7 @@ export default {
   methods: {
     login() {
       this.InternalStorage.userAuth = true;
-      router.push("/findDentist");
+      router.push("/");
     },
   },
 };
