@@ -14,14 +14,9 @@ let db = {
   },
   async addItemInCollectionMDb(apiName, data) {
     console.log("CALLED FUNCTION: addItemInCollectionMDb");
-    let serverData = {
-      text: data,
-      //map data to server
-      //name:data.name;
-      //surname:data.surname
-    };
-    await Service.post(`/${apiName}/`, serverData);
-    return;
+    console.log(data);
+    let result = await Service.post(`/${apiName}/`, data);
+    return result;
   },
   async deleteItemFromCollectionByIdMDb(apiName, id) {
     console.log("CALLED FUNCTION: deleteItemFromCollectionByIdMDb");

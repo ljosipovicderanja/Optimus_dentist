@@ -48,27 +48,28 @@ router.post("/auth", async (req, res) => {
 });
 
 //--CRUD - create,read, update, delete
-//get
+//get all dentist from db
 router.get("/dentist", async (req, res) => {
   let collection = await loadCollection("dentist");
   let data = await collection.find({}).toArray();
   res.send(data);
-  logReqRes(req, data);
 });
 
-//add dentist
+//add one dentist into collection
 router.post("/dentist", async (req, res) => {
   let db = await connect();
+  let userInput = req.body;
   let data = {
-    name: req.body.name,
-    years: req.body.years,
-    location: req.body.location,
-    selfDescription: req.body.selfDescription,
-    initalRating: 3.0,
+    name: userInput.name,
+    years: userInput.years,
+    location: userInput.location,
+    description: userInput.description,
+    externalLink: userInput.externalLink,
+    sex: userInput.sex,
+    initialRating: 3.0,
   };
   await db.collection("dentist").insertOne(data);
   res.status(201).send();
-  logReqRes(req, data);
 });
 
 //delete
@@ -83,10 +84,4 @@ async function loadCollection(collectionName) {
   return db.collection(collectionName);
 }
 
-function logReqRes(req, res) {
-  console.log("JSON-REQ: ");
-  console.log(req.body);
-  console.log("JSON-RES: ");
-  console.log(res);
-}
 module.exports = router;

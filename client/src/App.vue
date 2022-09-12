@@ -23,10 +23,7 @@ export default {
 #main {
   position: relative;
   //background-image: url("images/background2.JPG");
-  background-image: linear-gradient(#2c3e50, #7490ab);
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: center;
+
   margin: 0 0 0 0;
   padding: 0;
   border: 0;
@@ -41,7 +38,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #b3c3d3;
+  color: #4a5592;
   margin: 0 0 0 0;
   background-size: auto;
   padding: 0;

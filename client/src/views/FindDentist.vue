@@ -2,20 +2,24 @@
   <div class="about">
     <h1 style="margin-top: 30px">Find Dentist</h1>
 
-    <h2 style="margin-top: 30px">Top rated dentists</h2>
+    <h2 style="margin-top: 30px">All dentists</h2>
 
     <div id="items" v-for="item in items" v-bind:key="item._id">
-      <DentistCard viewDetail="true" />
+      <DentistCard
+        :viewDetail="true"
+        :id="item._id"
+        :name="item.name"
+        :description="item.description"
+        :sex="item.sex"
+        :location="item.location"
+        :years="item.years"
+        :rating="item.rating != null ? item.rating : item.initialRating"
+        :externalLink="item.externalLink != null ? item.externalLink : 'https://www.index.hr/'"
+      />
     </div>
-
     <hr class="solid" />
 
-    <div id="items" v-for="item in items" v-bind:key="item._id">
-      <DentistCard />
-    </div>
-
     <br />
-    <button @click="testBaza()">test button</button>
   </div>
 </template>
 
@@ -35,6 +39,7 @@ export default {
 
   async created() {
     this.items = await db.getAllItemsFromCollectionMDb("dentist");
+    console.log(this.items);
   },
 
   methods: {
@@ -52,6 +57,6 @@ export default {
 }
 
 hr.solid {
-  border-top: 3px solid #7490ab;
+  border-top: 1px solid #7490ab;
 }
 </style>

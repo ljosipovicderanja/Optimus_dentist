@@ -5,7 +5,7 @@
         <div class="col"></div>
         <div class="col-8">
           <div class="jumbotron" style="background-color: transparent">
-            <h1 class="display-4">Welcome to DentistFinder</h1>
+            <h1 class="display-6">Welcome to DentistFinder</h1>
             <img src="@/assets/dentist_logo.png" class="rounded-circle centered" style="max-width: 150px; margin: 20px 0px 20px 0px; box-shadow: 0px 0px 68px -7px rgba(0, 0, 0, 0.61)" alt="Avatar" />
             <p class="lead">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur blanditiis nihil iure error rem? Voluptatem dolor nemo quasi sunt, voluptates exercitationem? Cumque nobis sed voluptas dolor et excepturi aliquam consequatur!
@@ -58,3 +58,14 @@ export default {
   },
 };
 </script>
+
+<style>
+#home {
+  background-image: linear-gradient(#2c3e50, #7490ab);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+  height: 100%;
+  max-height: 100%;
+}
+</style>
