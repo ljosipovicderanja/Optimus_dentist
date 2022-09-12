@@ -3,7 +3,7 @@
     <h1>This is an Add dentist page</h1>
     <div class="container">
       <div class="row">
-        <div class="col-sm">sdfds</div>
+        <div class="col-sm"></div>
         <div class="col-6">
           <form>
             <div class="form-group" style="margin-top: 20px">
@@ -34,7 +34,7 @@
               </select>
             </div>
           </form>
-          <button class="btn btn-primary btn-lg" @click.prevent="addDentist()">Login</button>
+          <button class="btn btn-primary btn-lg" @click.prevent="addDentist()">Add dentist</button>
         </div>
         <div class="col-sm"></div>
       </div>

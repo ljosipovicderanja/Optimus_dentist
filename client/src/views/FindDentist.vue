@@ -13,8 +13,9 @@
         :sex="item.sex"
         :location="item.location"
         :years="item.years"
-        :rating="item.rating != null ? item.rating : item.initialRating"
         :externalLink="item.externalLink != null ? item.externalLink : 'https://www.index.hr/'"
+        :comments="item.comments"
+        :numOfComments="item.comments != null ? item.comments.length : 0"
       />
     </div>
     <hr class="solid" />
@@ -42,12 +43,7 @@ export default {
     console.log(this.items);
   },
 
-  methods: {
-    async testBaza() {
-      //should use await
-      return await db.getAllItemsFromCollectionMDb("dentist");
-    },
-  },
+  methods: {},
 };
 </script>
 

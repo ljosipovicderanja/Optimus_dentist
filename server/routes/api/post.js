@@ -8,13 +8,12 @@ const router = express.Router();
 //register user
 router.post("/users", async (req, res) => {
   let db = await connect();
-  let result;
   let user = req.body;
   let userData = {
     username: user.username,
     password: user.password,
   };
-  console.log("received data: ");
+
   console.log(userData);
 
   try {
@@ -66,10 +65,37 @@ router.post("/dentist", async (req, res) => {
     description: userInput.description,
     externalLink: userInput.externalLink,
     sex: userInput.sex,
-    initialRating: 3.0,
+    comments: [],
   };
   await db.collection("dentist").insertOne(data);
   res.status(201).send();
+});
+
+//post comment
+router.patch("/rateComment", async (req, res) => {
+  let db = await connect();
+  let data = req.body;
+
+  console.log(data);
+
+  let dentist = await db.collection("dentist").findOne({ _id: new mongodb.ObjectId(data._id) });
+  let newComments = dentist.comments;
+  newComments.push(data.comment);
+
+  try {
+    await db.collection("dentist").updateOne(
+      { _id: mongodb.ObjectId(data._id) },
+      {
+        $set: { comments: newComments },
+      }
+    );
+    dentist = await db.collection("dentist").findOne({ _id: new mongodb.ObjectId(data._id) });
+    res.status(200).send();
+  } catch (e) {
+    res.status(500).json({
+      error: e.message,
+    });
+  }
 });
 
 //delete

@@ -23,6 +23,16 @@ let db = {
     return Service.delete(`${apiName}/${id}`);
   },
 
+  async rateCommentDentist(apiName, data) {
+    console.log("CALLED FUNCTION: rateDentist");
+    let serverData = {
+      _id: data._id,
+      comment: data.comment,
+    };
+    console.log(serverData);
+    return await Service.patch(`${apiName}/`, serverData);
+  },
+
   async registerUser(apiName, data) {
     console.log("CALLED FUNCTION: registerUser");
     let serverData = {
@@ -30,7 +40,7 @@ let db = {
       password: data.password,
     };
     console.log(serverData);
-    await Service.post(`/${apiName}/`, serverData);
+    return await Service.post(`/${apiName}/`, serverData);
   },
 
   async loginUser(apiName, data) {
