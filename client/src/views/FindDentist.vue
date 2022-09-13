@@ -18,7 +18,7 @@
             :years="item.years"
             :externalLink="item.externalLink != null ? item.externalLink : 'https://www.index.hr/'"
             :comments="item.comments"
-            :numOfComments="item.comments != null ? item.comments.length : 0"
+            :numOfComments="item.comments != null ? item.comments.length.toString() : '0'"
             :viewNumOfComments="true"
           />
         </div>
@@ -42,7 +42,7 @@
         :years="item.years"
         :externalLink="item.externalLink != null ? item.externalLink : 'https://www.index.hr/'"
         :comments="item.comments"
-        :numOfComments="item.comments != null ? item.comments.length : 0"
+        :numOfComments="item.comments != null ? item.comments.length.toString() : '0'"
         :viewNumOfComments="true"
       />
     </div>

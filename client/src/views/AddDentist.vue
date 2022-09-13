@@ -7,23 +7,23 @@
           <form>
             <div class="form-group" style="margin-top: 20px">
               <label for="formGroupExampleInput1">Dentist name</label>
-              <input type="text" class="form-control" v-model="dentistName" id="formGroupExampleInput" placeholder="Dentist name" />
+              <input type="text" class="form-control" v-model="dentistName" id="formGroupExampleInput" placeholder="* Dentist name" />
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput2">Years</label>
-              <input type="text" class="form-control" v-model="dentistYears" id="formGroupExampleInput2" placeholder="Years" />
+              <input type="text" class="form-control" v-model="dentistYears" id="formGroupExampleInput2" placeholder="* Years" />
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput3">Description</label>
-              <input type="text" class="form-control" v-model="dentistDescription" id="formGroupExampleInput2" placeholder="Description" />
+              <input type="text" class="form-control" v-model="dentistDescription" id="formGroupExampleInput2" placeholder="* Description" />
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput4">Location</label>
-              <input type="text" class="form-control" v-model="dentistLocation" id="formGroupExampleInput" placeholder="Location" />
+              <input type="text" class="form-control" v-model="dentistLocation" id="formGroupExampleInput" placeholder="* Location" />
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput4">External link</label>
-              <input type="text" class="form-control" v-model="dentistExternalLink" id="formGroupExampleInput" placeholder="External link" />
+              <input type="text" class="form-control" v-model="dentistExternalLink" id="formGroupExampleInput" placeholder="* External link" />
             </div>
             <div class="form-group">
               <label for="inputState">Sex</label>
@@ -67,6 +67,10 @@ export default {
 
   methods: {
     async addDentist() {
+      if (this.dentistName === "" || this.dentistName === "" || this.dentistYears === "" || this.dentistDescription === "" || this.dentistLocation === "" || this.dentistExternalLink === "") {
+        alert("Some fields missing data!");
+        return;
+      }
       console.log("Adding dentist into db");
       let userInput = {
         name: this.dentistName,

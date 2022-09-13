@@ -8,15 +8,25 @@ let Service = axios.create({
 let db = {
   async getAllItemsFromCollectionMDb(apiName) {
     console.log("CALLED FUNCTION: getAllItemsFromCollectionMDb");
-    let response = await Service.get(`/${apiName}/`);
-    let data = response.data;
-    return data;
+    try {
+      let response = await Service.get(`/${apiName}/`);
+      let data = response.data;
+      return data;
+    } catch (e) {
+      alert("FETCHING FROM COLLECTION FAILED: " + e.message);
+      return false;
+    }
   },
   async addItemInCollectionMDb(apiName, data) {
     console.log("CALLED FUNCTION: addItemInCollectionMDb");
     console.log(data);
-    let result = await Service.post(`/${apiName}/`, data);
-    return result;
+    try {
+      let result = await Service.post(`/${apiName}/`, data);
+      return result;
+    } catch (e) {
+      alert("ADDING ITEM IN COLLECTION FAILED: " + e.message);
+      return false;
+    }
   },
   async deleteItemFromCollectionByIdMDb(apiName, id) {
     console.log("CALLED FUNCTION: deleteItemFromCollectionByIdMDb");
@@ -30,7 +40,12 @@ let db = {
       comment: data.comment,
     };
     console.log(serverData);
-    return await Service.patch(`${apiName}/`, serverData);
+    try {
+      return await Service.patch(`${apiName}/`, serverData);
+    } catch (e) {
+      alert("ADDING COMMENT FAILED: " + e.message);
+      return false;
+    }
   },
 
   async registerUser(apiName, data) {
@@ -58,22 +73,12 @@ let db = {
       password: data.password,
     };
     console.log(serverData);
-    console.log("pozivam login");
     try {
       result = await Service.post(`/${apiName}/`, serverData);
     } catch (e) {
       alert("LOGIN FAILED: " + e.message);
       return false;
     }
-
-    console.log("rezultat");
-    console.log(serverData);
-
-    if (result.status != 200 || !result.data) {
-      alert("Loign failed!");
-      return;
-    }
-    console.log(result);
     return result;
   },
 };

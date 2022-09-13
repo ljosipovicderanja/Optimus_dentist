@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import { db } from "@/services/index.js";
 import router from "@/router";
 import InternalStorage from "@/InternalStorage";
 
@@ -34,14 +33,11 @@ export default {
 
   data() {
     return {
-      items: [],
       InternalStorage,
     };
   },
 
-  async created() {
-    this.items = await db.getAllItemsFromCollectionMDb("dentist");
-  },
+  async created() {},
 
   methods: {
     navigateFindDentist() {
@@ -50,10 +46,6 @@ export default {
       } else {
         router.push("/login");
       }
-    },
-    async testBaza() {
-      //should use await
-      return await db.getAllItemsFromCollectionMDb("dentist");
     },
   },
 };

@@ -55,6 +55,10 @@ export default {
       window.open(this.InternalStorage.dentistExternalLink);
     },
     async rateComment() {
+      if (!this.comment || this.comment === "") {
+        alert("You can't post empty comment!");
+        return;
+      }
       let serverData = {
         _id: InternalStorage.dentistId,
         comment: this.comment,
