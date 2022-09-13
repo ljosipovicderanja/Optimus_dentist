@@ -27,6 +27,10 @@
     <hr class="solid" />
     <h3 style="margin-top: 30px">All dentist</h3>
 
+    <button type="button" class="btn btn-secondary" @click.prevent="sortTopCommented()" style="margin-top: 10px">Sort top comment</button>
+    <button type="button" class="btn btn-secondary" @click.prevent="sortLeastCommented()" style="margin-top: 10px">Sort least comment</button>
+    <br />
+
     <div id="items" v-for="item in items" v-bind:key="item._id">
       <DentistCard
         :viewDetail="true"
