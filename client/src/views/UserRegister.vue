@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     async register() {
+      let result;
       if (this.password != this.repeatedPassword) {
         alert("Password not match!");
         return;
@@ -45,8 +46,12 @@ export default {
           username: this.username,
           password: this.password,
         };
-        await db.registerUser("users", userData);
-        router.push("/login");
+        result = await db.registerUser("users", userData);
+        if (result && result.status === 201) {
+          router.push("/login");
+        } else {
+          return;
+        }
       }
     },
   },

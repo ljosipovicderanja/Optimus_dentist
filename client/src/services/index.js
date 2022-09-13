@@ -40,17 +40,35 @@ let db = {
       password: data.password,
     };
     console.log(serverData);
-    return await Service.post(`/${apiName}/`, serverData);
+    let result;
+    try {
+      result = await Service.post(`/${apiName}/`, serverData);
+      return result;
+    } catch (e) {
+      alert("REGISTER FAILED: " + e.message);
+      return false;
+    }
   },
 
   async loginUser(apiName, data) {
     console.log("CALLED FUNCTION: loginUser");
+    let result;
     let serverData = {
       username: data.username,
       password: data.password,
     };
     console.log(serverData);
-    let result = await Service.post(`/${apiName}/`, serverData);
+    console.log("pozivam login");
+    try {
+      result = await Service.post(`/${apiName}/`, serverData);
+    } catch (e) {
+      alert("LOGIN FAILED: " + e.message);
+      return false;
+    }
+
+    console.log("rezultat");
+    console.log(serverData);
+
     if (result.status != 200 || !result.data) {
       alert("Loign failed!");
       return;

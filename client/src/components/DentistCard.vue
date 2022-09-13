@@ -9,7 +9,7 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Description: {{ description }}</li>
         <li class="list-group-item">Location: {{ location }}</li>
-        <li class="list-group-item">Comments: {{ numOfComments }}</li>
+        <li class="list-group-item" v-if="viewNumOfComments">Comments: {{ numOfComments }}</li>
       </ul>
       <div class="card-body" v-if="viewDetail">
         <button class="btn btn-primary btn-lg" @click.prevent="viewDetails()">View details</button>
@@ -35,6 +35,7 @@ export default {
     rating: Number,
     comments: Array,
     viewDetail: Boolean,
+    viewNumOfComments: Boolean,
     numOfComments: String,
   },
 

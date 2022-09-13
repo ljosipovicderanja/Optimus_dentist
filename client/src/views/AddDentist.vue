@@ -1,10 +1,9 @@
 <template>
   <div class="about">
-    <h1>This is an Add dentist page</h1>
+    <h1 style="margin-top: 30px">Add dentist</h1>
     <div class="container">
       <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-6">
+        <div class="col">
           <form>
             <div class="form-group" style="margin-top: 20px">
               <label for="formGroupExampleInput1">Dentist name</label>
@@ -36,7 +35,9 @@
           </form>
           <button class="btn btn-primary btn-lg" @click.prevent="addDentist()">Add dentist</button>
         </div>
-        <div class="col-sm"></div>
+        <div class="col">
+          <DentistCard :name="this.dentistName" :description="this.dentistDescription" :location="this.dentistLocation" :years="this.dentistYears" />
+        </div>
       </div>
     </div>
   </div>
@@ -45,10 +46,11 @@
 <script>
 import router from "@/router";
 import { db } from "@/services/index.js";
+import DentistCard from "@/components/DentistCard.vue";
 
 export default {
   name: "AddDentist",
-  components: {},
+  components: { DentistCard },
 
   data() {
     return {

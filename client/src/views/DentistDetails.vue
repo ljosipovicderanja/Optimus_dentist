@@ -11,6 +11,7 @@
             :years="InternalStorage.dentistYears"
             :externalLink="InternalStorage.dentistExternalLink"
             :numOfComments="InternalStorage.denitstCommentsNumber"
+            :viewNumOfComments="true"
           />
           <button class="btn btn-primary btn-lg" @click.prevent="goToExternalLink()">Make appointment</button>
         </div>

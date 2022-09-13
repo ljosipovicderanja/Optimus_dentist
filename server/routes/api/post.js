@@ -7,18 +7,18 @@ const router = express.Router();
 //--register/auth
 //register user
 router.post("/users", async (req, res) => {
-  let db = await connect();
+  let db = await loadCollection("users");
   let user = req.body;
   let userData = {
     username: user.username,
     password: user.password,
   };
 
-  console.log(userData);
-
   try {
-    result = await db.collection("users").insertOne(userData);
-    res.status(201).send();
+    let result = await db.insertOne(userData);
+    if (result) {
+      res.status(201).send();
+    }
   } catch (e) {
     res.status(500).json({
       error: e.message,
@@ -36,8 +36,8 @@ router.post("/auth", async (req, res) => {
     if (dbuser && dbuser.password == user.password) {
       res.status(200).json(dbuser.username);
     } else {
+      db.resolve();
       res.status(401).send();
-      throw new Error("Authentication failed - wrong username or password");
     }
   } catch (e) {
     res.status(500).json({
@@ -49,9 +49,14 @@ router.post("/auth", async (req, res) => {
 //--CRUD - create,read, update, delete
 //get all dentist from db
 router.get("/dentist", async (req, res) => {
-  let collection = await loadCollection("dentist");
-  let data = await collection.find({}).toArray();
-  res.send(data);
+  let db = await loadCollection("dentist");
+  try {
+    let data = await db.find({}).toArray();
+    res.send(data);
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).send();
+  }
 });
 
 //add one dentist into collection
@@ -67,16 +72,19 @@ router.post("/dentist", async (req, res) => {
     sex: userInput.sex,
     comments: [],
   };
-  await db.collection("dentist").insertOne(data);
-  res.status(201).send();
+  try {
+    await db.collection("dentist").insertOne(data);
+    res.status(201).send();
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).send();
+  }
 });
 
 //post comment
 router.patch("/rateComment", async (req, res) => {
   let db = await connect();
   let data = req.body;
-
-  console.log(data);
 
   let dentist = await db.collection("dentist").findOne({ _id: new mongodb.ObjectId(data._id) });
   let newComments = dentist.comments;
@@ -90,7 +98,7 @@ router.patch("/rateComment", async (req, res) => {
       }
     );
     dentist = await db.collection("dentist").findOne({ _id: new mongodb.ObjectId(data._id) });
-    res.status(200).send();
+    res.status(200).send(dentist);
   } catch (e) {
     res.status(500).json({
       error: e.message,
@@ -99,10 +107,19 @@ router.patch("/rateComment", async (req, res) => {
 });
 
 //delete
+//no usage
 router.delete("/:id", async (req, res) => {
   let db = await loadCollection("newCollection");
-  await db.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
-  res.status(200).send();
+  try {
+    await db.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
+    res.status(200).send();
+  } catch (e) {
+    db.resolve();
+    console.log(e);
+    res.status(500).json({
+      error: e.message,
+    });
+  }
 });
 
 async function loadCollection(collectionName) {

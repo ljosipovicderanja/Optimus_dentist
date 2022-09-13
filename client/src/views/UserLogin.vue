@@ -42,8 +42,7 @@ export default {
         password: this.password,
       };
       let result = await db.loginUser("auth", userData);
-      if (result.status != 200 || !result.data) {
-        alert("Loign failed!");
+      if (!result) {
         return;
       } else {
         this.InternalStorage.userAuth = true;
